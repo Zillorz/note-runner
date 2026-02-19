@@ -39,6 +39,7 @@ fn main() -> Result<()> {
 
     if args[1] == "repl" {
         let mut line = String::new();
+
         loop {
             print!("> ");
             line.clear();
@@ -131,7 +132,7 @@ fn run_code(blocks: &[Code], run: usize) -> Result<()> {
         bail!("Failed to compile the program!");
     }
 
-    Command::new(tmp_dir.path().join("a.exe")).spawn()?.wait()?;
+    Command::new(tmp_dir.path().join(if cfg!(windows) { "a.exe" } else { "a.out" })).spawn()?.wait()?;
     println!();
 
     Ok(())

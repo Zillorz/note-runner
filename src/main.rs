@@ -24,7 +24,8 @@ fn main() -> Result<()> {
     let args: Vec<String> = std::env::args().collect();
 
     if args.len() == 1 {
-        bail!("Usage: note-runner <repl> <filename> OR note-runner <filemame> <block number>");
+        println!("Usage: note-runner repl <filename> OR note-runner <filename> <block number>");
+        return Ok(());
     }
 
     if args.len() < 3 {
